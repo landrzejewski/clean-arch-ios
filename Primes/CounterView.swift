@@ -12,6 +12,8 @@ struct CounterView: View {
     
     @ObservedObject var appState: AppState
     @State var isPrimeViewShown = false
+    @State var alertNthPrime: PrimeAlert?
+    @State var isNthPrimeButtonDisabled = false
     
     var body: some View {
         VStack {
@@ -27,15 +29,27 @@ struct CounterView: View {
             Button(action: { isPrimeViewShown = true }) {
                 Text("Is this prime?")
             }
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            Button(action: nthPrimeButtonAction) {
                 Text("What is the \(ordinal(appState.counterValue)) prime?")
             }
+            .disabled(isNthPrimeButtonDisabled)
         }
         .font(.title)
         .navigationTitle("Counter demo")
         .sheet(isPresented: $isPrimeViewShown) {
             IsPrimeView(appState: appState)
                 .onDisappear() { isPrimeViewShown = false }
+        }
+        .alert(item: $alertNthPrime) { alert in
+            Alert(title: Text("The \(ordinal(appState.counterValue)) prime is \(alert.prime)"), dismissButton: .default(Text("Ok")))
+        }
+    }
+    
+    private func nthPrimeButtonAction() {
+        isNthPrimeButtonDisabled = true
+        nthPrime(appState.counterValue) { prime in
+            alertNthPrime = prime.map(PrimeAlert.init(prime:))
+            isNthPrimeButtonDisabled = false
         }
     }
     
@@ -44,6 +58,13 @@ struct CounterView: View {
         formatter.numberStyle = .ordinal
         return formatter.string(for: n) ?? ""
     }
+    
+}
+
+struct PrimeAlert: Identifiable {
+    
+    let prime: Int
+    var id: Int { prime }
     
 }
 

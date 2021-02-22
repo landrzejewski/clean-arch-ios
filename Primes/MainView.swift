@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    let appState = AppState()
+    @ObservedObject var appState: AppState
     
     var body: some View {
         NavigationView {
@@ -17,7 +17,7 @@ struct MainView: View {
                 NavigationLink(destination: CounterView(appState: appState)) {
                     Text("Counter demo")
                 }
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: FavouritePrimesView(appState: appState)) {
                     Text("Favourite primes")
                 }
             }
@@ -30,7 +30,7 @@ struct MainView: View {
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
-        MainView()
+        MainView(appState: AppState())
     }
     
 }
