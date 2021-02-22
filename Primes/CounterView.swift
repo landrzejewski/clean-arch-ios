@@ -10,16 +10,16 @@ import SwiftUI
 
 struct CounterView: View {
     
-    @State var counterValue = 0
+    @ObservedObject var viewModel: CounterViewModel
     
     var body: some View {
         VStack {
             HStack {
-                Button(action: { counterValue -= 1 }) {
+                Button(action: { viewModel.counterValue -= 1 }) {
                     Text("-")
                 }
-                Text("\(counterValue)")
-                Button(action: { counterValue += 1 }) {
+                Text("\(viewModel.counterValue)")
+                Button(action: { viewModel.counterValue += 1 }) {
                     Text("+")
                 }
             }
@@ -27,7 +27,7 @@ struct CounterView: View {
                 Text("Is this prime?")
             }
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                Text("What is the \(ordinal(counterValue)) prime?")
+                Text("What is the \(ordinal(viewModel.counterValue)) prime?")
             }
         }
         .font(.title)
@@ -45,7 +45,7 @@ struct CounterView: View {
 struct CounterView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CounterView()
+        CounterView(viewModel: CounterViewModel())
     }
     
 }

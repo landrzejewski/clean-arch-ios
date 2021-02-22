@@ -12,7 +12,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: CounterView()) {
+                NavigationLink(destination: CounterView(viewModel: CounterViewModel())) {
                     Text("Counter demo")
                 }
                 NavigationLink(destination: EmptyView()) {
