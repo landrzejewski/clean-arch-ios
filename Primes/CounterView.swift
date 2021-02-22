@@ -10,17 +10,17 @@ import SwiftUI
 
 struct CounterView: View {
     
-    @ObservedObject var viewModel: CounterViewModel
+    @ObservedObject var appState: AppState
     @State var isPrimeViewShown = false
     
     var body: some View {
         VStack {
             HStack {
-                Button(action: { viewModel.counterValue -= 1 }) {
+                Button(action: { appState.counterValue -= 1 }) {
                     Text("-")
                 }
-                Text("\(viewModel.counterValue)")
-                Button(action: { viewModel.counterValue += 1 }) {
+                Text("\(appState.counterValue)")
+                Button(action: { appState.counterValue += 1 }) {
                     Text("+")
                 }
             }
@@ -28,13 +28,13 @@ struct CounterView: View {
                 Text("Is this prime?")
             }
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
-                Text("What is the \(ordinal(viewModel.counterValue)) prime?")
+                Text("What is the \(ordinal(appState.counterValue)) prime?")
             }
         }
         .font(.title)
         .navigationTitle("Counter demo")
         .sheet(isPresented: $isPrimeViewShown) {
-            IsPrimeView(counterValue: $viewModel.counterValue)
+            IsPrimeView(appState: appState)
                 .onDisappear() { isPrimeViewShown = false }
         }
     }
@@ -50,7 +50,7 @@ struct CounterView: View {
 struct CounterView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CounterView(viewModel: CounterViewModel())
+        CounterView(appState: AppState())
     }
     
 }

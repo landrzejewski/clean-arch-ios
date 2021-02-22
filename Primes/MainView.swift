@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     
+    let appState = AppState()
+    
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: CounterView(viewModel: CounterViewModel())) {
+                NavigationLink(destination: CounterView(appState: appState)) {
                     Text("Counter demo")
                 }
                 NavigationLink(destination: EmptyView()) {
