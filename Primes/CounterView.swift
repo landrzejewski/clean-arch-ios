@@ -11,6 +11,7 @@ import SwiftUI
 struct CounterView: View {
     
     @ObservedObject var viewModel: CounterViewModel
+    @State var isPrimeViewShown = false
     
     var body: some View {
         VStack {
@@ -23,7 +24,7 @@ struct CounterView: View {
                     Text("+")
                 }
             }
-            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+            Button(action: { isPrimeViewShown = true }) {
                 Text("Is this prime?")
             }
             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -32,6 +33,10 @@ struct CounterView: View {
         }
         .font(.title)
         .navigationTitle("Counter demo")
+        .sheet(isPresented: $isPrimeViewShown) {
+            IsPrimeView(counterValue: $viewModel.counterValue)
+                .onDisappear() { isPrimeViewShown = false }
+        }
     }
     
     private func ordinal(_ n: Int) -> String {
