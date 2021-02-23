@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CounterView: View {
     
-    @ObservedObject var appState: AppState
+    @ObservedObject var store: Store<AppState>
     @State var isPrimeViewShown = false
     @State var alertNthPrime: PrimeAlert?
     @State var isNthPrimeButtonDisabled = false
@@ -18,11 +18,11 @@ struct CounterView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: { appState.counterValue -= 1 }) {
+                Button(action: { store.value.counterValue -= 1 }) {
                     Text("-")
                 }
-                Text("\(appState.counterValue)")
-                Button(action: { appState.counterValue += 1 }) {
+                Text("\(store.value.counterValue)")
+                Button(action: { store.value.counterValue += 1 }) {
                     Text("+")
                 }
             }
@@ -30,24 +30,24 @@ struct CounterView: View {
                 Text("Is this prime?")
             }
             Button(action: nthPrimeButtonAction) {
-                Text("What is the \(ordinal(appState.counterValue)) prime?")
+                Text("What is the \(ordinal(store.value.counterValue)) prime?")
             }
             .disabled(isNthPrimeButtonDisabled)
         }
         .font(.title)
         .navigationTitle("Counter demo")
         .sheet(isPresented: $isPrimeViewShown) {
-            IsPrimeView(appState: appState)
+            IsPrimeView(store: store)
                 .onDisappear() { isPrimeViewShown = false }
         }
         .alert(item: $alertNthPrime) { alert in
-            Alert(title: Text("The \(ordinal(appState.counterValue)) prime is \(alert.prime)"), dismissButton: .default(Text("Ok")))
+            Alert(title: Text("The \(ordinal(store.value.counterValue)) prime is \(alert.prime)"), dismissButton: .default(Text("Ok")))
         }
     }
     
     private func nthPrimeButtonAction() {
         isNthPrimeButtonDisabled = true
-        nthPrime(appState.counterValue) { prime in
+        nthPrime(store.value.counterValue) { prime in
             alertNthPrime = prime.map(PrimeAlert.init(prime:))
             isNthPrimeButtonDisabled = false
         }
@@ -71,7 +71,7 @@ struct PrimeAlert: Identifiable {
 struct CounterView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CounterView(appState: AppState())
+        CounterView(store: Store(initialValue: AppState()))
     }
     
 }

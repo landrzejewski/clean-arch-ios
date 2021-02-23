@@ -9,23 +9,23 @@ import SwiftUI
 
 struct IsPrimeView: View {
     
-    @ObservedObject var appState: AppState
+    @ObservedObject var store: Store<AppState>
     
     var body: some View {
         VStack {
-            if isPrime(appState.counterValue) {
-                Text("\(appState.counterValue) is prime")
-                if appState.isFavourite() {
-                    Button(action: { appState.removeFromFavouritePrimes() }) {
+            if isPrime(store.value.counterValue) {
+                Text("\(store.value.counterValue) is prime")
+                if store.value.favouritePrimes.contains(store.value.counterValue) {
+                    Button(action: { removeFromFavouritePrimes() }) {
                         Text("Remove from favorite primes")
                     }
                 } else {
-                    Button(action: { appState.addToFavouritePrimes() }) {
+                    Button(action: { addToFavouritePrimes() }) {
                         Text("Save to favorite primes")
                     }
                 }
             } else {
-                Text("\(appState.counterValue) is not prime :(")
+                Text("\(store.value.counterValue) is not prime :(")
             }
         }
         .font(.title)
@@ -40,12 +40,23 @@ struct IsPrimeView: View {
         return true
     }
     
+    
+    func removeFromFavouritePrimes() {
+        store.value.favouritePrimes.removeAll(where: { $0 == store.value.counterValue })
+        store.value.activityFeed.append(.init(timestamp: Date(), type: .removedFavoritePrime(store.value.counterValue)))
+    }
+    
+    func addToFavouritePrimes() {
+        store.value.favouritePrimes.append(store.value.counterValue)
+        store.value.activityFeed.append(.init(timestamp: Date(), type: .addedFavoritePrime(store.value.counterValue)))
+    }
+    
 }
 
 struct IsPrimeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        IsPrimeView(appState: AppState())
+        IsPrimeView(store: Store(initialValue: AppState()))
     }
     
 }

@@ -9,14 +9,14 @@ import SwiftUI
 
 struct FavouritePrimesView: View {
     
-    @ObservedObject var appState: AppState
+    @ObservedObject var store: Store<AppState>
     
     var body: some View {
         List {
-            ForEach(appState.favouritePrimes, id: \.self) { prime in
+            ForEach(store.value.favouritePrimes, id: \.self) { prime in
                 Text("\(prime)")
             }
-            .onDelete { appState.favouritePrimes.remove(atOffsets: $0) }
+            .onDelete { store.value.favouritePrimes.remove(atOffsets: $0) }
         }
         .navigationTitle("Favourite primes")
     }
@@ -26,7 +26,7 @@ struct FavouritePrimesView: View {
 struct FavouritePrimesView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FavouritePrimesView(appState: AppState())
+        FavouritePrimesView(store: Store(initialValue: AppState()))
     }
     
 }
