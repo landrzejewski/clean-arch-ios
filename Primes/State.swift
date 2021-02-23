@@ -39,17 +39,17 @@ struct AppState {
 
 final class Store<Value, Action>: ObservableObject {
     
-    let reducer: (Value, Action) -> Value
+    let reducer: (inout Value, Action) -> Void
     
     @Published var value: Value
     
-    init(initialValue: Value, reducer: @escaping (Value, Action) -> Value) {
+    init(initialValue: Value, reducer: @escaping (inout Value, Action) -> Void) {
         value = initialValue
         self.reducer = reducer
     }
     
     func send(_ action: Action) {
-        value = reducer(value, action)
+        reducer(&value, action)
     }
     
 }
@@ -61,15 +61,13 @@ enum CounterAction {
     
 }
 
-func counterReducer(state: AppState, action: CounterAction) -> AppState {
-    var newState = state
+func counterReducer(state: inout AppState, action: CounterAction) {
     switch action {
     case .increment:
-        newState.counterValue += 1
+        state.counterValue += 1
     case .decrement:
-        newState.counterValue -= 1
+        state.counterValue -= 1
     }
-    return newState
 }
 
 

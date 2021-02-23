@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct PrimesApp: App {
+    
     var body: some Scene {
+        
         WindowGroup {
             MainView(store: Store(initialValue: AppState(), reducer: counterReducer(state:action:)))
         }
+        
     }
+    
 }
