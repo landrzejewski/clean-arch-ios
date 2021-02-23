@@ -37,12 +37,19 @@ struct AppState {
     
 }
 
-final class Store<Value>: ObservableObject {
+final class Store<Value, Action>: ObservableObject {
+    
+    let reducer: (Value, Action) -> Value
     
     @Published var value: Value
     
-    init(initialValue: Value) {
+    init(initialValue: Value, reducer: @escaping (Value, Action) -> Value) {
         value = initialValue
+        self.reducer = reducer
+    }
+    
+    func send(_ action: Action) {
+        value = reducer(value, action)
     }
     
 }

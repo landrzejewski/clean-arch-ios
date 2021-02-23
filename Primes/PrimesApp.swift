@@ -11,7 +11,7 @@ import SwiftUI
 struct PrimesApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView(store: Store<AppState>(initialValue: AppState()))
+            MainView(store: Store(initialValue: AppState(), reducer: counterReducer(state:action:)))
         }
     }
 }

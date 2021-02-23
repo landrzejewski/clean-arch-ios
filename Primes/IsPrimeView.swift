@@ -9,7 +9,7 @@ import SwiftUI
 
 struct IsPrimeView: View {
     
-    @ObservedObject var store: Store<AppState>
+    @ObservedObject var store: Store<AppState, CounterAction>
     
     var body: some View {
         VStack {
@@ -56,7 +56,7 @@ struct IsPrimeView: View {
 struct IsPrimeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        IsPrimeView(store: Store(initialValue: AppState()))
+        IsPrimeView(store: Store(initialValue: AppState(), reducer: counterReducer(state:action:)))
     }
     
 }

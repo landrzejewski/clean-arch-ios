@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavouritePrimesView: View {
     
-    @ObservedObject var store: Store<AppState>
+    @ObservedObject var store: Store<AppState, CounterAction>
     
     var body: some View {
         List {
@@ -26,7 +26,7 @@ struct FavouritePrimesView: View {
 struct FavouritePrimesView_Previews: PreviewProvider {
     
     static var previews: some View {
-        FavouritePrimesView(store: Store(initialValue: AppState()))
+        FavouritePrimesView(store: Store(initialValue: AppState(), reducer: counterReducer(state:action:)))
     }
     
 }
