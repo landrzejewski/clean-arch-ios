@@ -9,18 +9,18 @@ import SwiftUI
 
 struct IsPrimeView: View {
     
-    @ObservedObject var store: Store<AppState, CounterAction>
+    @ObservedObject var store: Store<AppState, AppAction>
     
     var body: some View {
         VStack {
             if isPrime(store.value.counterValue) {
                 Text("\(store.value.counterValue) is prime")
-                if store.value.favouritePrimes.contains(store.value.counterValue) {
-                    Button(action: { removeFromFavouritePrimes() }) {
+                if store.value.favoritePrimes.values.contains(store.value.counterValue) {
+                    Button(action: { store.send(.isPrime(.removeFromFavoritePrimes)) }) {
                         Text("Remove from favorite primes")
                     }
                 } else {
-                    Button(action: { addToFavouritePrimes() }) {
+                    Button(action: { store.send(.isPrime(.saveToFavoritePrimes)) }) {
                         Text("Save to favorite primes")
                     }
                 }
@@ -40,23 +40,12 @@ struct IsPrimeView: View {
         return true
     }
     
-    
-    func removeFromFavouritePrimes() {
-        store.value.favouritePrimes.removeAll(where: { $0 == store.value.counterValue })
-        store.value.activityFeed.append(.init(timestamp: Date(), type: .removedFavoritePrime(store.value.counterValue)))
-    }
-    
-    func addToFavouritePrimes() {
-        store.value.favouritePrimes.append(store.value.counterValue)
-        store.value.activityFeed.append(.init(timestamp: Date(), type: .addedFavoritePrime(store.value.counterValue)))
-    }
-    
 }
 
 struct IsPrimeView_Previews: PreviewProvider {
     
     static var previews: some View {
-        IsPrimeView(store: Store(initialValue: AppState(), reducer: counterReducer(state:action:)))
+        IsPrimeView(store: Store(initialValue: AppState(), reducer: appReducer))
     }
     
 }
