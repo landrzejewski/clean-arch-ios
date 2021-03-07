@@ -8,26 +8,20 @@
 import Foundation
 import Combine
 
-struct FavoritePrimesState {
-    
-    var values: [Int]
-    var activities: [Activity]
-    
-}
-
 struct AppState {
     
     var counterValue = 0
-    var favoritePrimes = FavoritePrimesState(values: [], activities: [])
+    var favoritePrimes: [Int] = []
     var user: User?
+    var activities: [Activity] = []
     
 }
 
 enum AppAction {
     
     case counter(CounterAction)
-    case isPrime(IsPrimeAction)
-    case favoritePrimes(FavoritePrimesAction)
+    case isPrime(IsPrimeViewAction)
+    case favoritePrimes(FavoritePrimesViewAction)
     
     var counter: CounterAction? {
         get {
@@ -40,7 +34,7 @@ enum AppAction {
         }
     }
     
-    var isPrime: IsPrimeAction? {
+    var isPrime: IsPrimeViewAction? {
         get {
             guard case let .isPrime(value) = self else { return nil }
             return value
@@ -51,7 +45,7 @@ enum AppAction {
         }
     }
     
-    var favoritePrimes: FavoritePrimesAction? {
+    var favoritePrimes: FavoritePrimesViewAction? {
         get {
             guard case let .favoritePrimes(value) = self else { return nil }
             return value
@@ -64,8 +58,41 @@ enum AppAction {
     
 }
 
-let appReducer: (inout AppState, AppAction) -> Void = combine(
-    pullback(counterReducer, value: \.counterValue, action: \.counter),
-    pullback(isPrimeReducer, value: \.self, action: \.isPrime),
-    pullback(favoritePrimesReducer, value: \.favoritePrimes, action: \.favoritePrimes)
+// Higher-order reducers
+
+func activityFeedReducer(_ reducer: @escaping (inout AppState, AppAction) -> Void) -> (inout AppState, AppAction) -> Void {
+    return { state, action in
+        switch action {
+        case .counter:
+            break
+        case .isPrime(.saveToFavoritePrimes):
+            state.activities.append(.init(timestamp: Date(), type: .addedFavoritePrime(state.counterValue)))
+        case .isPrime(.removeFromFavoritePrimes):
+            state.activities.append(.init(timestamp: Date(), type: .removedFavoritePrime(state.counterValue)))
+        case let .favoritePrimes(.deleteFavoritePrimes(indexSet)):
+            for index in indexSet {
+                let prime = state.favoritePrimes[index]
+                state.activities.append(.init(timestamp: Date(), type: .removedFavoritePrime(prime)))
+            }
+        }
+        reducer(&state, action)
+    }
+}
+
+func loggingReducer<Value, Action>(_ reducer: @escaping (inout Value, Action) -> Void) -> (inout Value, Action) -> Void {
+    return { value, action in
+        reducer(&value, action)
+        print("Action: \(action)")
+        print("State:")
+        dump(value)
+        print("---")
+    }
+}
+
+let mainReducer: (inout AppState, AppAction) -> Void = sequence(
+    pullback(counterViewReducer, value: \.counterValue, action: \.counter),
+    pullback(isPrimeViewReducer, value: \.isPrime, action: \.isPrime),
+    pullback(favoritePrimesViewReducer, value: \.primes, action: \.favoritePrimes)
 )
+
+let appReducer = with(mainReducer, compose(loggingReducer, activityFeedReducer))

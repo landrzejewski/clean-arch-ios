@@ -9,18 +9,18 @@ import SwiftUI
 
 struct IsPrimeView: View {
     
-    @ObservedObject var store: Store<AppState, AppAction>
+    @ObservedObject var store: Store<IsPrimeViewState, IsPrimeViewAction>
     
     var body: some View {
         VStack {
             if isPrime(store.value.counterValue) {
                 Text("\(store.value.counterValue) is prime")
-                if store.value.favoritePrimes.values.contains(store.value.counterValue) {
-                    Button(action: { store.send(.isPrime(.removeFromFavoritePrimes)) }) {
+                if store.value.favoritePrimes.contains(store.value.counterValue) {
+                    Button(action: { store.send(.removeFromFavoritePrimes) }) {
                         Text("Remove from favorite primes")
                     }
                 } else {
-                    Button(action: { store.send(.isPrime(.saveToFavoritePrimes)) }) {
+                    Button(action: { store.send(.saveToFavoritePrimes) }) {
                         Text("Save to favorite primes")
                     }
                 }
@@ -38,14 +38,6 @@ struct IsPrimeView: View {
             if p % i == 0 { return false }
         }
         return true
-    }
-    
-}
-
-struct IsPrimeView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        IsPrimeView(store: Store(initialValue: AppState(), reducer: appReducer))
     }
     
 }

@@ -14,10 +14,18 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(destination: CounterView(store: store)) {
+                NavigationLink(destination: CounterView(store: store.view(value: { CounterViewState(counterValue: $0.counterValue, favoritePrimes: $0.favoritePrimes) }, action: {
+                    switch $0 {
+                    case let .counter(action):
+                        return .counter(action)
+                    case let .isPrime(action):
+                        return .isPrime(action)
+                    }
+                    
+                }))) {
                     Text("Counter demo")
                 }
-                NavigationLink(destination: FavouritePrimesView(store: store)) {
+                NavigationLink(destination: FavoritePrimesView(store: store.view(value: { $0.primes }, action: { .favoritePrimes($0) }))) {
                     Text("Favourite primes")
                 }
             }

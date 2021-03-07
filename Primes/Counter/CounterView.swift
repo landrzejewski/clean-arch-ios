@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CounterView: View {
     
-    @ObservedObject var store: Store<AppState, AppAction>
+    @ObservedObject var store: Store<CounterViewState, CounterViewAction>
     @State var isPrimeViewShown = false
     @State var alertNthPrime: PrimeAlert?
     @State var isNthPrimeButtonDisabled = false
@@ -37,7 +37,7 @@ struct CounterView: View {
         .font(.title)
         .navigationTitle("Counter demo")
         .sheet(isPresented: $isPrimeViewShown) {
-            IsPrimeView(store: store)
+            IsPrimeView(store: store.view(value: { IsPrimeViewState(counterValue: $0.counterValue, favoritePrimes: $0.favoritePrimes) }, action: { .isPrime($0) }))
                 .onDisappear() { isPrimeViewShown = false }
         }
         .alert(item: $alertNthPrime) { alert in
@@ -65,13 +65,5 @@ struct PrimeAlert: Identifiable {
     
     let prime: Int
     var id: Int { prime }
-    
-}
-
-struct CounterView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        CounterView(store: Store(initialValue: AppState(), reducer: appReducer))
-    }
     
 }

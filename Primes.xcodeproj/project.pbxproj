@@ -17,16 +17,19 @@
 		8018F1E025E3E27600AF3D96 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018F1DF25E3E27600AF3D96 /* Configuration.swift */; };
 		8018F1EB25E448B000AF3D96 /* IsPrimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018F1EA25E448B000AF3D96 /* IsPrimeView.swift */; };
 		8018F1F625E450EC00AF3D96 /* Wolfram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018F1F525E450EC00AF3D96 /* Wolfram.swift */; };
-		8018F1FB25E4551D00AF3D96 /* FavouritePrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018F1FA25E4551D00AF3D96 /* FavouritePrimesView.swift */; };
+		8018F1FB25E4551D00AF3D96 /* FavoritePrimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8018F1FA25E4551D00AF3D96 /* FavoritePrimesView.swift */; };
 		8061219225EAB7420016399A /* Framework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061219125EAB7420016399A /* Framework.swift */; };
-		8061219E25EAC6450016399A /* CounterAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061219D25EAC6450016399A /* CounterAction.swift */; };
+		8061219E25EAC6450016399A /* CounterViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8061219D25EAC6450016399A /* CounterViewAction.swift */; };
 		806121A325EAC6600016399A /* CounterReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121A225EAC6600016399A /* CounterReducer.swift */; };
-		806121A925EAC6990016399A /* IsPrimeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121A825EAC6990016399A /* IsPrimeAction.swift */; };
-		806121AE25EAC6AF0016399A /* IsPrimeReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121AD25EAC6AF0016399A /* IsPrimeReducer.swift */; };
-		806121B425EAC6F70016399A /* FavouritePrimesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121B325EAC6F70016399A /* FavouritePrimesAction.swift */; };
-		806121B925EAC7220016399A /* FavouritePrimesReucer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121B825EAC7220016399A /* FavouritePrimesReucer.swift */; };
+		806121A925EAC6990016399A /* IsPrimeViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121A825EAC6990016399A /* IsPrimeViewAction.swift */; };
+		806121AE25EAC6AF0016399A /* IsPrimeViewReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121AD25EAC6AF0016399A /* IsPrimeViewReducer.swift */; };
+		806121B425EAC6F70016399A /* FavoritePrimesViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121B325EAC6F70016399A /* FavoritePrimesViewAction.swift */; };
+		806121B925EAC7220016399A /* FavoritePrimesViewReucer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121B825EAC7220016399A /* FavoritePrimesViewReucer.swift */; };
 		806121BF25EAC77F0016399A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121BE25EAC77F0016399A /* User.swift */; };
 		806121C425EAC79B0016399A /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806121C325EAC79B0016399A /* Activity.swift */; };
+		80D53CC025F3FBDB00C9132F /* IsPrimeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D53CBF25F3FBDB00C9132F /* IsPrimeViewState.swift */; };
+		80D53CC525F3FC6600C9132F /* CounterViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D53CC425F3FC6600C9132F /* CounterViewState.swift */; };
+		80D53CFA25F4D7C400C9132F /* FavoritePrimesViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D53CF925F4D7C400C9132F /* FavoritePrimesViewState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,16 +66,19 @@
 		8018F1DF25E3E27600AF3D96 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8018F1EA25E448B000AF3D96 /* IsPrimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeView.swift; sourceTree = "<group>"; };
 		8018F1F525E450EC00AF3D96 /* Wolfram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wolfram.swift; sourceTree = "<group>"; };
-		8018F1FA25E4551D00AF3D96 /* FavouritePrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePrimesView.swift; sourceTree = "<group>"; };
+		8018F1FA25E4551D00AF3D96 /* FavoritePrimesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesView.swift; sourceTree = "<group>"; };
 		8061219125EAB7420016399A /* Framework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Framework.swift; sourceTree = "<group>"; };
-		8061219D25EAC6450016399A /* CounterAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterAction.swift; sourceTree = "<group>"; };
+		8061219D25EAC6450016399A /* CounterViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewAction.swift; sourceTree = "<group>"; };
 		806121A225EAC6600016399A /* CounterReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterReducer.swift; sourceTree = "<group>"; };
-		806121A825EAC6990016399A /* IsPrimeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeAction.swift; sourceTree = "<group>"; };
-		806121AD25EAC6AF0016399A /* IsPrimeReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeReducer.swift; sourceTree = "<group>"; };
-		806121B325EAC6F70016399A /* FavouritePrimesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePrimesAction.swift; sourceTree = "<group>"; };
-		806121B825EAC7220016399A /* FavouritePrimesReucer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePrimesReucer.swift; sourceTree = "<group>"; };
+		806121A825EAC6990016399A /* IsPrimeViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeViewAction.swift; sourceTree = "<group>"; };
+		806121AD25EAC6AF0016399A /* IsPrimeViewReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeViewReducer.swift; sourceTree = "<group>"; };
+		806121B325EAC6F70016399A /* FavoritePrimesViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesViewAction.swift; sourceTree = "<group>"; };
+		806121B825EAC7220016399A /* FavoritePrimesViewReucer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesViewReucer.swift; sourceTree = "<group>"; };
 		806121BE25EAC77F0016399A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		806121C325EAC79B0016399A /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		80D53CBF25F3FBDB00C9132F /* IsPrimeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsPrimeViewState.swift; sourceTree = "<group>"; };
+		80D53CC425F3FC6600C9132F /* CounterViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewState.swift; sourceTree = "<group>"; };
+		80D53CF925F4D7C400C9132F /* FavoritePrimesViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePrimesViewState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +133,7 @@
 				806121CF25EAC8040016399A /* Commons */,
 				8061219C25EAC60E0016399A /* Counter */,
 				806121A725EAC6780016399A /* IsPrime */,
-				806121B225EAC6CA0016399A /* FavouritePrimes */,
+				806121B225EAC6CA0016399A /* FavoritePrimes */,
 				8018F19625E3C44D00AF3D96 /* MainView.swift */,
 				8018F19425E3C44D00AF3D96 /* PrimesApp.swift */,
 				8018F19A25E3C44F00AF3D96 /* Preview Content */,
@@ -174,7 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				8018F1C925E3C60E00AF3D96 /* CounterView.swift */,
-				8061219D25EAC6450016399A /* CounterAction.swift */,
+				80D53CC425F3FC6600C9132F /* CounterViewState.swift */,
+				8061219D25EAC6450016399A /* CounterViewAction.swift */,
 				806121A225EAC6600016399A /* CounterReducer.swift */,
 			);
 			path = Counter;
@@ -184,20 +191,22 @@
 			isa = PBXGroup;
 			children = (
 				8018F1EA25E448B000AF3D96 /* IsPrimeView.swift */,
-				806121A825EAC6990016399A /* IsPrimeAction.swift */,
-				806121AD25EAC6AF0016399A /* IsPrimeReducer.swift */,
+				80D53CBF25F3FBDB00C9132F /* IsPrimeViewState.swift */,
+				806121A825EAC6990016399A /* IsPrimeViewAction.swift */,
+				806121AD25EAC6AF0016399A /* IsPrimeViewReducer.swift */,
 			);
 			path = IsPrime;
 			sourceTree = "<group>";
 		};
-		806121B225EAC6CA0016399A /* FavouritePrimes */ = {
+		806121B225EAC6CA0016399A /* FavoritePrimes */ = {
 			isa = PBXGroup;
 			children = (
-				8018F1FA25E4551D00AF3D96 /* FavouritePrimesView.swift */,
-				806121B325EAC6F70016399A /* FavouritePrimesAction.swift */,
-				806121B825EAC7220016399A /* FavouritePrimesReucer.swift */,
+				8018F1FA25E4551D00AF3D96 /* FavoritePrimesView.swift */,
+				80D53CF925F4D7C400C9132F /* FavoritePrimesViewState.swift */,
+				806121B325EAC6F70016399A /* FavoritePrimesViewAction.swift */,
+				806121B825EAC7220016399A /* FavoritePrimesViewReucer.swift */,
 			);
-			path = FavouritePrimes;
+			path = FavoritePrimes;
 			sourceTree = "<group>";
 		};
 		806121CF25EAC8040016399A /* Commons */ = {
@@ -358,20 +367,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				806121C425EAC79B0016399A /* Activity.swift in Sources */,
+				80D53CC525F3FC6600C9132F /* CounterViewState.swift in Sources */,
 				8018F1EB25E448B000AF3D96 /* IsPrimeView.swift in Sources */,
-				806121B425EAC6F70016399A /* FavouritePrimesAction.swift in Sources */,
+				806121B425EAC6F70016399A /* FavoritePrimesViewAction.swift in Sources */,
 				8018F1F625E450EC00AF3D96 /* Wolfram.swift in Sources */,
 				8018F19725E3C44D00AF3D96 /* MainView.swift in Sources */,
 				806121BF25EAC77F0016399A /* User.swift in Sources */,
-				806121AE25EAC6AF0016399A /* IsPrimeReducer.swift in Sources */,
+				806121AE25EAC6AF0016399A /* IsPrimeViewReducer.swift in Sources */,
+				80D53CFA25F4D7C400C9132F /* FavoritePrimesViewState.swift in Sources */,
 				8018F1E025E3E27600AF3D96 /* Configuration.swift in Sources */,
-				8061219E25EAC6450016399A /* CounterAction.swift in Sources */,
+				8061219E25EAC6450016399A /* CounterViewAction.swift in Sources */,
 				806121A325EAC6600016399A /* CounterReducer.swift in Sources */,
 				8061219225EAB7420016399A /* Framework.swift in Sources */,
-				806121B925EAC7220016399A /* FavouritePrimesReucer.swift in Sources */,
-				8018F1FB25E4551D00AF3D96 /* FavouritePrimesView.swift in Sources */,
+				80D53CC025F3FBDB00C9132F /* IsPrimeViewState.swift in Sources */,
+				806121B925EAC7220016399A /* FavoritePrimesViewReucer.swift in Sources */,
+				8018F1FB25E4551D00AF3D96 /* FavoritePrimesView.swift in Sources */,
 				8018F19525E3C44D00AF3D96 /* PrimesApp.swift in Sources */,
-				806121A925EAC6990016399A /* IsPrimeAction.swift in Sources */,
+				806121A925EAC6990016399A /* IsPrimeViewAction.swift in Sources */,
 				8018F1CA25E3C60E00AF3D96 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
